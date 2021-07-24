@@ -19,7 +19,6 @@ function addtask() {
   } else {
     const commingtask = input.value
     task[0].push(commingtask)
-    
     show()
   }
 }
@@ -42,7 +41,8 @@ function deletetask(index) {
 function show() {
   localStorage.setItem('task', JSON.stringify(task));
   tasklist.innerHTML = ""
-  for (let index = 0; index < task[0].length; index++) {
+  document.querySelectorAll('button').disabled=true
+  for (let index = task[0].length-1; index >= 0; index--) {
     const div = document.createElement("div")
     const taskdiv = document.createElement("div")
     const btndiv = document.createElement("div")
@@ -58,6 +58,19 @@ function show() {
     newtask.innerHTML = task[0][index]
     newtask.classList.add("pt-2")
     newtask.classList.add("text-2xl")
+    div.classList.add("border-b-2")
+    div.classList.add("border-purple-400")
+    
+    donebtn.style.visibility='hidden'
+    deletebtn.style.visibility='hidden'
+    div.addEventListener("mouseover",function(){
+      donebtn.style.visibility='visible'
+      deletebtn.style.visibility='visible'
+    })
+    div.addEventListener("mouseout",function(){
+      donebtn.style.visibility='hidden'
+      deletebtn.style.visibility='hidden'
+    })
     donebtn.addEventListener("click",donetask(index))
     deletebtn.addEventListener("click",deletetask(index))
     taskdiv.append(newtask)
@@ -67,13 +80,15 @@ function show() {
     div.append(btndiv)
     tasklist.append(div)
   }
-  for (let index = 0; index < task[1].length; index++) {
+  for (let index = task[1].length-1; index >=0; index--) {
     const div = document.createElement("div")
     const donetask = document.createElement("li")
     const p=document.createElement('p')
     p.classList.add("line-through")
     p.classList.add("text-xl")
     p.innerHTML=task[1][index]
+    div.classList.add("border-b-2")
+    div.classList.add("border-purple-400")
     donetask.append(p)
     div.classList.add("py-2")
     div.append(donetask)

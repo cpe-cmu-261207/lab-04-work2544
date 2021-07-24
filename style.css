@@ -1,3 +1,11 @@
+@font-face {
+    font-family:Raleway;
+    src: url(font/Raleway/static/Raleway-SemiBold.ttf);
+  }
+  @font-face {
+    font-family:Montserrat;
+    src: url(font/Montserrat/Montserrat-Light.ttf);
+  }
 .donebtn{
     background-color: #4CAF50; 
     border: none;
@@ -9,7 +17,7 @@
     font-size: 16px;
 }
 .deletebtn{
-    background-color: #f44336; 
+    background-color: #e72517; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -17,4 +25,26 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+body{
+    background-image: url("img/2248.jpg");
+    background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: auto;
+}
+input[type=text] {
+    width: 100%;
+    padding: 20px 20px;
+    background-color: lightblue;
+    border: 2px solid #01796F;
+    border-radius: 4px;
+  }
+h1{
+    font-family: "Raleway", Times, serif;
+}  
+li{
+    font-family: "Montserrat", Times, serif;
+}
+#addbtn{
+    font-size: 25px;
 }
