@@ -1,8 +1,12 @@
 /* Your code here */
 var input = document.querySelector("#taskinput");
-var task = [[], [], []]
+var task = [[], []] 
 var tasklist = document.querySelector("#tasklist")
 document.querySelector("#addbtn").addEventListener("click", addtask);
+if(localStorage.task==null)
+localStorage.setItem('task', JSON.stringify(task));
+task = JSON.parse(localStorage.getItem('task'));
+show()
 input.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
     event.preventDefault();
@@ -15,10 +19,11 @@ function addtask() {
   } else {
     const commingtask = input.value
     task[0].push(commingtask)
+    
     show()
   }
 }
-var donetask=function(index){
+function donetask (index){
   return function curried_func(e)
   {
     task[1].push(task[0][index])
@@ -35,6 +40,7 @@ function deletetask(index) {
   
 }
 function show() {
+  localStorage.setItem('task', JSON.stringify(task));
   tasklist.innerHTML = ""
   for (let index = 0; index < task[0].length; index++) {
     const div = document.createElement("div")
@@ -50,7 +56,8 @@ function show() {
     deletebtn.classList.add("deletebtn")
     deletebtn.innerText = "DELETE"
     newtask.innerHTML = task[0][index]
-    newtask.id = index
+    newtask.classList.add("pt-2")
+    newtask.classList.add("text-2xl")
     donebtn.addEventListener("click",donetask(index))
     deletebtn.addEventListener("click",deletetask(index))
     taskdiv.append(newtask)
@@ -65,8 +72,10 @@ function show() {
     const donetask = document.createElement("li")
     const p=document.createElement('p')
     p.classList.add("line-through")
+    p.classList.add("text-xl")
     p.innerHTML=task[1][index]
     donetask.append(p)
+    div.classList.add("py-2")
     div.append(donetask)
     tasklist.append(div)
   }
