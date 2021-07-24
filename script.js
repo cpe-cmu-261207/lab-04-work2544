@@ -24,7 +24,6 @@ var donetask=function(index){
     task[1].push(task[0][index])
     task[0].splice(index, 1);
     show()
-    console.log(task)
   }
 }
 function deletetask(index) {
@@ -59,6 +58,16 @@ function show() {
     btndiv.append(deletebtn)
     div.append(taskdiv)
     div.append(btndiv)
+    tasklist.append(div)
+  }
+  for (let index = 0; index < task[1].length; index++) {
+    const div = document.createElement("div")
+    const donetask = document.createElement("li")
+    const p=document.createElement('p')
+    p.classList.add("line-through")
+    p.innerHTML=task[1][index]
+    donetask.append(p)
+    div.append(donetask)
     tasklist.append(div)
   }
 }
